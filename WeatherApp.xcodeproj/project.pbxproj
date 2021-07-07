@@ -15,6 +15,10 @@
 		A0EF9A4E2695FADF000C2F23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0EF9A4C2695FADF000C2F23 /* LaunchScreen.storyboard */; };
 		A0EF9A592695FAE0000C2F23 /* WeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EF9A582695FAE0000C2F23 /* WeatherAppTests.swift */; };
 		A0EF9A642695FAE0000C2F23 /* WeatherAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EF9A632695FAE0000C2F23 /* WeatherAppUITests.swift */; };
+		A0EF9A752695FEDC000C2F23 /* WebClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EF9A742695FEDC000C2F23 /* WebClient.swift */; };
+		A0EF9A772695FFEE000C2F23 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EF9A762695FFEE000C2F23 /* NetworkError.swift */; };
+		A0EF9AD926960188000C2F23 /* HTTPRequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EF9AD826960188000C2F23 /* HTTPRequestMethod.swift */; };
+		A0EF9B8926960AD5000C2F23 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EF9B8826960AD5000C2F23 /* RequestManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		A0EF9A5F2695FAE0000C2F23 /* WeatherAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0EF9A632695FAE0000C2F23 /* WeatherAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppUITests.swift; sourceTree = "<group>"; };
 		A0EF9A652695FAE0000C2F23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0EF9A742695FEDC000C2F23 /* WebClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebClient.swift; sourceTree = "<group>"; };
+		A0EF9A762695FFEE000C2F23 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		A0EF9AD826960188000C2F23 /* HTTPRequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestMethod.swift; sourceTree = "<group>"; };
+		A0EF9B8826960AD5000C2F23 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +109,8 @@
 			children = (
 				A0EF9A412695FADC000C2F23 /* AppDelegate.swift */,
 				A0EF9A432695FADC000C2F23 /* SceneDelegate.swift */,
+				A0EF9B8A26960CF8000C2F23 /* Models */,
+				A0EF9A732695FDCF000C2F23 /* Networking */,
 				A0EF9A722695FBB2000C2F23 /* Resources */,
 				A0EF9A712695FB6A000C2F23 /* Supporting Files */,
 				A0EF9A452695FADC000C2F23 /* ViewController.swift */,
@@ -142,6 +152,24 @@
 				A0EF9A4A2695FADF000C2F23 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		A0EF9A732695FDCF000C2F23 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				A0EF9A742695FEDC000C2F23 /* WebClient.swift */,
+				A0EF9A762695FFEE000C2F23 /* NetworkError.swift */,
+				A0EF9AD826960188000C2F23 /* HTTPRequestMethod.swift */,
+				A0EF9B8826960AD5000C2F23 /* RequestManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		A0EF9B8A26960CF8000C2F23 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,6 +305,10 @@
 				A0EF9A462695FADC000C2F23 /* ViewController.swift in Sources */,
 				A0EF9A422695FADC000C2F23 /* AppDelegate.swift in Sources */,
 				A0EF9A442695FADC000C2F23 /* SceneDelegate.swift in Sources */,
+				A0EF9A752695FEDC000C2F23 /* WebClient.swift in Sources */,
+				A0EF9B8926960AD5000C2F23 /* RequestManager.swift in Sources */,
+				A0EF9AD926960188000C2F23 /* HTTPRequestMethod.swift in Sources */,
+				A0EF9A772695FFEE000C2F23 /* NetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
