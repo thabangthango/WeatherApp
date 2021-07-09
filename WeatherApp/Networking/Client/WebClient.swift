@@ -1,14 +1,5 @@
 import Foundation
 
-protocol URLSessionClient {
-    func performRequest<T: Codable>(
-        path: String,
-        httpMethod: HTTPRequestMethod,
-        params: [URLQueryItem]?,
-        completion: @escaping(Result<T?, NetworkError>) -> Void
-    )
-}
-
 class WebClient: URLSessionClient {
     private let session: URLSession
     private let requestManager: RequestManager
@@ -19,6 +10,7 @@ class WebClient: URLSessionClient {
     }
     
     func performRequest<T: Codable>(
+        model: T.Type,
         path: String,
         httpMethod: HTTPRequestMethod,
         params: [URLQueryItem]?,
@@ -27,44 +19,40 @@ class WebClient: URLSessionClient {
         guard let request = requestManager.urlRequest(
                 with: path,
                 httpMethod: httpMethod,
-                queryParams: params)
-        else {
-            return
-        }
+                queryParams: params) else { return }
         
         let task = session.dataTask(with: request) { [weak self] (data, response, error) in
-            DispatchQueue.main.async {
-                guard error == nil else {
+            guard error == nil else {
+                DispatchQueue.main.async {
                     completion(.failure(NetworkError(error, response) ?? .none))
-                    return
                 }
-                completion(.success(self?.response(from: data, model: T.self)))
+                return
+            }
+            DispatchQueue.main.async {
+                self?.parseResponse(with: model, data: data, response: response, completion: completion)
             }
         }
         
         task.resume()
     }
     
-    private func response<T: Codable>(from data: Data?, model: T.Type) -> T? {
+    private func parseResponse<T: Codable>(
+        with model: T.Type,
+        data: Data?,
+        response: URLResponse?,
+        completion: @escaping(Result<T?, NetworkError>) -> Void
+    ) {
         guard let data = data else {
-            return nil
+            completion(.failure(NetworkError(nil, response) ?? .none))
+            return
         }
-        var dataModel: T?
         
         do {
-            let decoder = JSONDecoder()
-            dataModel = try decoder.decode(model, from: data)
+            let dataModel = try JSONDecoder().decode(model.self, from: data)
+            completion(.success(dataModel))
         } catch {
-            // do something
+            debugPrint("Error encoding body: \(error)")
+            completion(.failure(NetworkError(nil, response) ?? .none))
         }
-        
-        return dataModel
-    }
-}
-
-extension HTTPURLResponse {
-    
-    func isSuccessful() -> Bool {
-        return (200...299).contains(self.statusCode)
     }
 }

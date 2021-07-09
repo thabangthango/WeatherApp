@@ -32,3 +32,10 @@ extension NetworkError: LocalizedError {
         }
     }
 }
+
+fileprivate extension HTTPURLResponse {
+    
+    func isSuccessful() -> Bool {
+        return (200...299).contains(self.statusCode)
+    }
+}

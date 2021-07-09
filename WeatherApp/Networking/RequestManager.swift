@@ -18,7 +18,6 @@ class RequestManager {
         }
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod.rawValue
-        
         return request
     }
     
