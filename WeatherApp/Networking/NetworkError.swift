@@ -6,12 +6,12 @@ enum NetworkError: Error {
     case none
 }
 
+// MARK:- Convenince init
 extension NetworkError {
-    
     init?(_ error: Error?, _ response: URLResponse?) {
         if error != nil {
             self = .clientError
-        } else if (response as? HTTPURLResponse)?.isSuccessful() == false {
+        } else if (response as? HTTPURLResponse)?.isOk() == false {
             self = .serverError
         } else {
             return nil
@@ -19,6 +19,7 @@ extension NetworkError {
     }
 }
 
+// MARK:- Localized error
 extension NetworkError: LocalizedError {
     
     var errorDescription: String? {
@@ -34,8 +35,7 @@ extension NetworkError: LocalizedError {
 }
 
 fileprivate extension HTTPURLResponse {
-    
-    func isSuccessful() -> Bool {
+    func isOk() -> Bool {
         return (200...299).contains(self.statusCode)
     }
 }

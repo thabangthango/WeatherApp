@@ -2,10 +2,10 @@ import Foundation
 
 class WebClient: URLSessionClient {
     private let session: URLSession
-    private let requestManager: RequestManager
+    private let requestManager: URLSessionRequestManager
     
-    init(baseUrl: String, configuration: URLSessionConfiguration) {
-        self.requestManager = RequestManager(baseUrl: baseUrl)
+    init(requestManager: URLSessionRequestManager, configuration: URLSessionConfiguration) {
+        self.requestManager = requestManager
         self.session = URLSession(configuration: configuration)
     }
     

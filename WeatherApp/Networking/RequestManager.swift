@@ -1,6 +1,15 @@
 import Foundation
 
-class RequestManager {
+protocol URLSessionRequestManager {
+    
+    func urlRequest(
+        with path: String,
+        httpMethod: HTTPRequestMethod,
+        queryParams: [URLQueryItem]?
+    ) -> URLRequest?
+}
+
+class RequestManager: URLSessionRequestManager {
     private let baseUrl: String
     
     init(baseUrl: String) {
@@ -18,6 +27,7 @@ class RequestManager {
         }
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod.rawValue
+        
         return request
     }
     
