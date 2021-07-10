@@ -13,7 +13,7 @@ class WeatherForecastTableViewController: UITableViewController {
         locationManager.delegate = self
         configureTableView()
     }
-    
+
     private func configureTableView() {
         let nib = UINib(nibName: String(describing: WeatherForecastTableViewCell.self), bundle: Bundle.main)
         tableView.register(nib, forCellReuseIdentifier: WeatherForecastTableViewCell.reuseIdentifier)
@@ -21,7 +21,7 @@ class WeatherForecastTableViewController: UITableViewController {
         let statusBarHeight =  UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.height
         tableView.contentInset = UIEdgeInsets(top: -(statusBarHeight ?? 0), left: 0, bottom: 0, right: 0)
     }
-    
+
     private func configureSummaryView(_ headerView: WeatherSummaryView) {
         let currentWeather = viewModel.currentWeather
         headerView.configure(minClimate: currentWeather?.minTemp)
@@ -30,7 +30,7 @@ class WeatherForecastTableViewController: UITableViewController {
         headerView.configure(backgroundImage: currentWeather?.type?.backgroundImage)
         headerView.configure(climateDescription: currentWeather?.type?.summary)
     }
-    
+
     private func configureTableHeaderView(with headerView: WeatherSummaryView) {
         let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
         var frame = headerView.frame
@@ -38,7 +38,7 @@ class WeatherForecastTableViewController: UITableViewController {
         headerView.frame = frame
         tableView.tableHeaderView = headerView
     }
-    
+
     private func updateTableViewState() {
         let headerView = WeatherSummaryView.loadViewFromNib(owner: self)
         configureSummaryView(headerView)
@@ -46,7 +46,7 @@ class WeatherForecastTableViewController: UITableViewController {
         tableView.backgroundColor = viewModel.currentWeather?.type?.backgroundColor
         tableView.reloadData()
     }
-    
+
     private func performRequestIfNeed(for status: CLAuthorizationStatus) {
         guard isLocationGranted(for: status), let coordinate = locationManager.location?.coordinate else {
             locationManager.requestWhenInUseAuthorization()
@@ -57,7 +57,7 @@ class WeatherForecastTableViewController: UITableViewController {
         }
         performRequest(with: coordinate)
     }
-    
+
     private func performRequest(with coordinate: CLLocationCoordinate2D) {
         showLoading()
         viewModel.fetchWeatherInfo(with: coordinate) { [weak self] error in
@@ -73,7 +73,7 @@ class WeatherForecastTableViewController: UITableViewController {
 
 // MARK: - Table view data source
 extension WeatherForecastTableViewController {
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -81,32 +81,33 @@ extension WeatherForecastTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfDays()
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
-            let cell = tableView.dequeueReusableCell(withIdentifier: WeatherForecastTableViewCell.reuseIdentifier) as? WeatherForecastTableViewCell,
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: WeatherForecastTableViewCell.reuseIdentifier) as? WeatherForecastTableViewCell,
             let weather = viewModel.weather(forDay: indexPath.row)
         else {
             return UITableViewCell()
         }
-        
+
         cell.configure(title: weather.day)
         cell.configure(climate: weather.temp)
         cell.configure(image: weather.type?.icon)
         cell.hideSeperator()
         cell.selectionStyle = .none
-        
+
         return cell
     }
 }
 
 // MARK: - CLLocationManagerDelegate
 extension WeatherForecastTableViewController: CLLocationManagerDelegate {
-    
+
     public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         performRequestIfNeed(for: status)
     }
-    
+
     private func isLocationGranted(for status: CLAuthorizationStatus) -> Bool {
         return status == CLAuthorizationStatus.authorizedWhenInUse || status == CLAuthorizationStatus.authorizedAlways
     }

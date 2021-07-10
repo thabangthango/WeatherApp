@@ -6,7 +6,7 @@ enum NetworkError: Error {
     case none
 }
 
-// MARK:- Convenince init
+// MARK: - Convenince init
 extension NetworkError {
     init?(_ error: Error?, _ response: URLResponse?) {
         if error != nil {
@@ -19,9 +19,9 @@ extension NetworkError {
     }
 }
 
-// MARK:- Localized error
+// MARK: - Localized error
 extension NetworkError: LocalizedError {
-    
+
     var errorDescription: String? {
         switch self {
         case .serverError:

@@ -5,7 +5,7 @@ public struct WeatherDetails: Codable {
     let feelsLike: Float
     let tempMin: Float
     let tempMax: Float
-    
+
     private enum CodingKeys: String, CodingKey {
         case temp
         case feelsLike = "feels_like"

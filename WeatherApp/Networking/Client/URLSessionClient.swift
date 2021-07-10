@@ -1,7 +1,7 @@
 import Foundation
 
 protocol URLSessionClient {
-    
+
     func performRequest<T: Codable>(
         model: T.Type,
         path: String,

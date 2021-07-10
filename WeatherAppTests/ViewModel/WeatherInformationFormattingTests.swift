@@ -12,7 +12,7 @@ class WeatherInformationFormattingTests: XCTestCase {
         sunnyWeatherUnderTest = .day3
         rainyWeatherUnderTest = .day5
     }
-    
+
     override func tearDown() {
         cloudyWeatherUnderTest = nil
         sunnyWeatherUnderTest = nil
@@ -25,43 +25,43 @@ class WeatherInformationFormattingTests: XCTestCase {
         XCTAssertEqual("Tuesday", sunnyWeatherUnderTest.day)
         XCTAssertEqual("Saturday", rainyWeatherUnderTest.day)
     }
-    
+
     func testWeatherReturnsExpectedWeatherType() {
         XCTAssertEqual(.cloudy, cloudyWeatherUnderTest.type)
         XCTAssertEqual(.sunny, sunnyWeatherUnderTest.type)
         XCTAssertEqual(.rainy, rainyWeatherUnderTest.type)
     }
-    
+
     func testWeatherReturnsExpectedWeatherBackgroundColor() {
         XCTAssertEqual(.cloudy, cloudyWeatherUnderTest.type?.backgroundColor)
         XCTAssertEqual(.sunny, sunnyWeatherUnderTest.type?.backgroundColor)
         XCTAssertEqual(.rainy, rainyWeatherUnderTest.type?.backgroundColor)
     }
-    
+
     func testWeatherReturnsExpectedWeatherBackgroundImage() {
         XCTAssertEqual(.cloudyBackground, cloudyWeatherUnderTest.type?.backgroundImage)
         XCTAssertEqual(.sunnyBackground, sunnyWeatherUnderTest.type?.backgroundImage)
         XCTAssertEqual(.rainyBackground, rainyWeatherUnderTest.type?.backgroundImage)
     }
-    
+
     func testWeatherReturnsExpectedWeatherBackgroundIcon() {
         XCTAssertEqual(.cloudyIcon, cloudyWeatherUnderTest.type?.icon)
         XCTAssertEqual(.sunnyIcon, sunnyWeatherUnderTest.type?.icon)
         XCTAssertEqual(.rainyIcon, rainyWeatherUnderTest.type?.icon)
     }
-    
+
     func testWeatherReturnsExpectedWeatherTemp() {
         XCTAssertEqual("25°", cloudyWeatherUnderTest.temp)
         XCTAssertEqual("35°", sunnyWeatherUnderTest.temp)
         XCTAssertEqual("0°", rainyWeatherUnderTest.temp)
     }
-    
+
     func testWeatherReturnsExpectedMinWeatherTemp() {
         XCTAssertEqual("30°", cloudyWeatherUnderTest.minTemp)
         XCTAssertEqual("36°", sunnyWeatherUnderTest.minTemp)
         XCTAssertEqual("5°", rainyWeatherUnderTest.minTemp)
     }
-    
+
     func testWeatherReturnsExpectedMaxWeatherTemp() {
         XCTAssertEqual("20°", cloudyWeatherUnderTest.maxTemp)
         XCTAssertEqual("30°", sunnyWeatherUnderTest.maxTemp)
