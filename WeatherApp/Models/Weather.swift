@@ -1,6 +1,6 @@
 import Foundation
 
-struct Weather: Codable {
+public struct Weather: Codable {
     let date: Int
     let summary: [WeatherSummary]
     let details: WeatherDetails

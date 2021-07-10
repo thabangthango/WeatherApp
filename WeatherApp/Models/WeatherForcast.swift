@@ -1,6 +1,6 @@
 import Foundation
 
-struct WeatherForcast: Codable {
+public struct WeatherForcast: Codable {
     let dailyForcasts: [Weather]
     
     private enum CodingKeys: String, CodingKey {

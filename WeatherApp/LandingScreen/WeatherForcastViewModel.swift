@@ -39,15 +39,19 @@ class WeatherForcastViewModel {
     }
     
     func weather(forDay day: Int) -> Weather? {
-        guard let dailyForcast = weatherForcast?.dailyForcasts[day] else {
+        guard let dailyForcast = weatherForcast?.dailyForcasts.element(at: day) else {
             return nil
         }
         return dailyForcast
     }
+    
+    func configure(dataProvider: WeatherDataProvider) {
+        self.weatherDataProvider = dataProvider
+    }
 }
 
 // MARK: - Weather data formating extension
-fileprivate extension Weather {
+extension Weather {
     
     var day: String {
         let date = Date(timeIntervalSince1970: TimeInterval(date))
@@ -82,7 +86,7 @@ fileprivate extension NSDate {
 
     static var dayFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd"
+        dateFormatter.dateFormat = "EEEE"
         dateFormatter.calendar = Calendar.current
         return dateFormatter
     }

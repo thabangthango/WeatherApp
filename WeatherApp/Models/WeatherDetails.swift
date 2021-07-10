@@ -1,6 +1,6 @@
 import Foundation
 
-struct WeatherDetails: Codable {
+public struct WeatherDetails: Codable {
     let temp: Float
     let feelsLike: Float
     let tempMin: Float
