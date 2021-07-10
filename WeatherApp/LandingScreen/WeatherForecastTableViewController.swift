@@ -12,7 +12,6 @@ class WeatherForecastTableViewController: UITableViewController {
         super.viewDidLoad()
         locationManager.delegate = self
         configureTableView()
-        performRequestIfNeed(for: locationManager.authorizationStatus)
     }
     
     private func configureTableView() {
@@ -51,6 +50,9 @@ class WeatherForecastTableViewController: UITableViewController {
     private func performRequestIfNeed(for status: CLAuthorizationStatus) {
         guard isLocationGranted(for: status), let coordinate = locationManager.location?.coordinate else {
             locationManager.requestWhenInUseAuthorization()
+            if status == .denied {
+                showOkAlert(title: "Location Denied", message: "Please update your location permission in the settings App")
+            }
             return
         }
         performRequest(with: coordinate)
@@ -61,6 +63,7 @@ class WeatherForecastTableViewController: UITableViewController {
         viewModel.fetchWeatherInfo(with: coordinate) { [weak self] error in
             self?.hideLoading()
             guard error == nil, let self = self else {
+                self?.showErrorAlert(retry: { self?.performRequest(with: coordinate) })
                 return
             }
             self.updateTableViewState()

@@ -1,5 +1,6 @@
 import UIKit
 
+// MARK: - Loading view
 public extension UITableViewController {
     private var loaderViewTag: Int { 222 }
     
@@ -16,5 +17,22 @@ public extension UITableViewController {
         let indicatorView = self.view.viewWithTag(loaderViewTag) as? UIActivityIndicatorView
         indicatorView?.stopAnimating()
         indicatorView?.removeFromSuperview()
+    }
+}
+
+// MARK: - Alerts
+public extension UITableViewController {
+    
+    func showOkAlert(title: String, message: String) {
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        controller.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        present(controller, animated: true, completion: nil)
+    }
+    
+    func showErrorAlert(retry: @escaping () -> Void) {
+        let controller = UIAlertController(title: "Oops", message: "Something went wrong", preferredStyle: .alert)
+        controller.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
+        controller.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        present(controller, animated: true, completion: nil)
     }
 }

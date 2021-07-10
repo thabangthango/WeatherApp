@@ -3,6 +3,13 @@ import Foundation
 fileprivate let apiKey = "337dbed743638aedfbd1573a379191ac"
 fileprivate let unitType = "metric"
 
+fileprivate struct Constants {
+    static let latKeyName = "lat"
+    static let lonKeyName = "lon"
+    static let apiKeyName = "appid"
+    static let unitKeyName = "units"
+}
+
 class WeatherService: WeatherDataProvider {
     private let baseUrlString = "https://api.openweathermap.org/data/2.5"
     private var configuration = URLSessionConfiguration.default
@@ -14,10 +21,10 @@ class WeatherService: WeatherDataProvider {
     
     func getCurrentWeather(withLat lat: String, lon: String, completion: @escaping(Weather?, NetworkError?) -> Void) {
         let path = "/weather"
-        let params = [URLQueryItem(name: "lat", value: lat),
-                      URLQueryItem(name: "lon", value: lon),
-                      URLQueryItem(name: "appid", value: apiKey),
-                      URLQueryItem(name: "units", value: unitType)]
+        let params = [URLQueryItem(name: Constants.latKeyName, value: lat),
+                      URLQueryItem(name: Constants.lonKeyName, value: lon),
+                      URLQueryItem(name: Constants.apiKeyName, value: apiKey),
+                      URLQueryItem(name: Constants.unitKeyName, value: unitType)]
         
         webClient.performRequest(
             model: Weather.self,
@@ -34,10 +41,10 @@ class WeatherService: WeatherDataProvider {
     
     func getDailyWeatherForecast(withLat lat: String, lon: String, completion: @escaping(WeatherForcast?, NetworkError?) -> Void) {
         let path = "/forecast"
-        let params = [URLQueryItem(name: "lat", value: lat),
-                      URLQueryItem(name: "lon", value: lon),
-                      URLQueryItem(name: "appid", value: apiKey),
-                      URLQueryItem(name: "units", value: unitType)]
+        let params = [URLQueryItem(name: Constants.latKeyName, value: lat),
+                      URLQueryItem(name: Constants.lonKeyName, value: lon),
+                      URLQueryItem(name: Constants.apiKeyName, value: apiKey),
+                      URLQueryItem(name: Constants.unitKeyName, value: unitType)]
         
         webClient.performRequest(
             model: WeatherForcast.self,

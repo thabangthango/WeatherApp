@@ -86,9 +86,3 @@ class WeatherSummaryView: UIView {
         return headerView
     }
 }
-
-extension String {
-    static let min = "Min"
-    static let max = "Max"
-    static let current = "Current"
-}
