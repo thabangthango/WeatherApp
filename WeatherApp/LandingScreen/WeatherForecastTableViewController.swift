@@ -1,6 +1,8 @@
 import UIKit
+import CoreLocation
 
 class WeatherForecastTableViewController: UITableViewController {
+    private lazy var locationManager = CLLocationManager()
     private let viewModel: WeatherForcastViewModel = {
         let dataProvider = WeatherService()
         return WeatherForcastViewModel(dataProvider: dataProvider)
@@ -8,14 +10,17 @@ class WeatherForecastTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.delegate = self
         configureTableView()
-        performRequest()
+        performRequestIfNeed(for: locationManager.authorizationStatus)
     }
     
     private func configureTableView() {
         let nib = UINib(nibName: String(describing: WeatherForecastTableViewCell.self), bundle: Bundle.main)
         tableView.register(nib, forCellReuseIdentifier: WeatherForecastTableViewCell.reuseIdentifier)
         tableView.separatorStyle = .none
+        let statusBarHeight =  UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.height
+        tableView.contentInset = UIEdgeInsets(top: -(statusBarHeight ?? 0), left: 0, bottom: 0, right: 0)
     }
     
     private func configureSummaryView(_ headerView: WeatherSummaryView) {
@@ -43,9 +48,17 @@ class WeatherForecastTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    private func performRequest() {
+    private func performRequestIfNeed(for status: CLAuthorizationStatus) {
+        guard isLocationGranted(for: status), let coordinate = locationManager.location?.coordinate else {
+            locationManager.requestWhenInUseAuthorization()
+            return
+        }
+        performRequest(with: coordinate)
+    }
+    
+    private func performRequest(with coordinate: CLLocationCoordinate2D) {
         showLoading()
-        viewModel.fetchWeatherInfo(forCity: "London") { [weak self] error in
+        viewModel.fetchWeatherInfo(with: coordinate) { [weak self] error in
             self?.hideLoading()
             guard error == nil, let self = self else {
                 return
@@ -81,5 +94,17 @@ extension WeatherForecastTableViewController {
         cell.selectionStyle = .none
         
         return cell
+    }
+}
+
+// MARK: - CLLocationManagerDelegate
+extension WeatherForecastTableViewController: CLLocationManagerDelegate {
+    
+    public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        performRequestIfNeed(for: status)
+    }
+    
+    private func isLocationGranted(for status: CLAuthorizationStatus) -> Bool {
+        return status == CLAuthorizationStatus.authorizedWhenInUse || status == CLAuthorizationStatus.authorizedAlways
     }
 }

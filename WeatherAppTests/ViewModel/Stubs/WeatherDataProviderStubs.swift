@@ -5,22 +5,22 @@ class WeatherDataProviderStub: WeatherDataProvider {
     private let weatherForcast = WeatherForcast(dailyForcasts: [.day1, .day2, .day3, .day4, .day5])
     private let currentWeather: Weather = .day1
     
-    func getCurrentWeather(forCity city: String, completion: @escaping (Weather?, NetworkError?) -> Void) {
+    func getCurrentWeather(withLat lat: String, lon: String, completion: @escaping (Weather?, NetworkError?) -> Void) {
         completion(currentWeather, nil)
     }
     
-    func getDailyWeatherForecast(forCity city: String, completion: @escaping (WeatherForcast?, NetworkError?) -> Void) {
+    func getDailyWeatherForecast(withLat lat: String, lon: String, completion: @escaping (WeatherForcast?, NetworkError?) -> Void) {
         completion(weatherForcast, nil)
     }
 }
 
 class EmptyWeatherDataProviderStub: WeatherDataProvider {
     
-    func getCurrentWeather(forCity city: String, completion: @escaping (Weather?, NetworkError?) -> Void) {
+    func getCurrentWeather(withLat lat: String, lon: String, completion: @escaping (Weather?, NetworkError?) -> Void) {
         completion(nil, nil)
     }
     
-    func getDailyWeatherForecast(forCity city: String, completion: @escaping (WeatherForcast?, NetworkError?) -> Void) {
+    func getDailyWeatherForecast(withLat lat: String, lon: String, completion: @escaping (WeatherForcast?, NetworkError?) -> Void) {
         completion(nil, nil)
     }
 }

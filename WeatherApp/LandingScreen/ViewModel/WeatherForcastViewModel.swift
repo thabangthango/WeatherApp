@@ -1,4 +1,5 @@
 import UIKit
+import CoreLocation
 
 fileprivate let dayDateFormatter: DateFormatter = NSDate.dayFormatter
 
@@ -11,19 +12,22 @@ class WeatherForcastViewModel {
         self.weatherDataProvider = dataProvider
     }
     
-    func fetchWeatherInfo(forCity city: String, completion: @escaping(NetworkError?) -> Void) {
+    func fetchWeatherInfo(with coordinate: CLLocationCoordinate2D, completion: @escaping(NetworkError?) -> Void) {
         let dispatchGroup = DispatchGroup()
         var networkError: NetworkError?
         
+        let lat = String(coordinate.latitude)
+        let lon = String(coordinate.longitude)
+        
         dispatchGroup.enter()
-        weatherDataProvider.getCurrentWeather(forCity: city) { [weak self] response, error in
+        weatherDataProvider.getCurrentWeather(withLat: lat, lon: lon) { [weak self] response, error in
             self?.currentWeather = response
             networkError = error
             dispatchGroup.leave()
         }
         
         dispatchGroup.enter()
-        weatherDataProvider.getDailyWeatherForecast(forCity: city) { [weak self] response, error in
+        weatherDataProvider.getDailyWeatherForecast(withLat: lat, lon: lon) { [weak self] response, error in
             self?.weatherForcast = response
             networkError = error
             dispatchGroup.leave()

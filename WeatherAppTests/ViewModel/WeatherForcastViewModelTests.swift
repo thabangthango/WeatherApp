@@ -1,4 +1,5 @@
 import XCTest
+import CoreLocation
 @testable import WeatherApp
 
 class WeatherForcastViewModelTests: XCTestCase {
@@ -17,7 +18,7 @@ class WeatherForcastViewModelTests: XCTestCase {
     func testViewModelReturnsExpectedNumberOfDaysForEmptyData() {
         systemUnderTest.configure(dataProvider: EmptyWeatherDataProviderStub())
         
-        systemUnderTest.fetchWeatherInfo(forCity: "", completion: {_ in })
+        systemUnderTest.fetchWeatherInfo(with: CLLocationCoordinate2D(), completion: {_ in })
         
         XCTAssertEqual(0, systemUnderTest.numberOfDays())
     }
@@ -55,6 +56,6 @@ class WeatherForcastViewModelTests: XCTestCase {
     private func setupSystemUnderTest() {
         let dataProvider = WeatherDataProviderStub()
         systemUnderTest = WeatherForcastViewModel(dataProvider: dataProvider)
-        systemUnderTest.fetchWeatherInfo(forCity: "", completion: {_ in })
+        systemUnderTest.fetchWeatherInfo(with: CLLocationCoordinate2D(), completion: {_ in })
     }
 }

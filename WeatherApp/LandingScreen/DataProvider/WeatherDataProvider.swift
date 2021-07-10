@@ -2,7 +2,7 @@ import Foundation
 
 protocol WeatherDataProvider {
     
-    func getCurrentWeather(forCity city: String, completion: @escaping(Weather?, NetworkError?) -> Void)
+    func getCurrentWeather(withLat lat: String, lon: String, completion: @escaping(Weather?, NetworkError?) -> Void)
     
-    func getDailyWeatherForecast(forCity city: String, completion: @escaping(WeatherForcast?, NetworkError?) -> Void)
+    func getDailyWeatherForecast(withLat lat: String, lon: String, completion: @escaping(WeatherForcast?, NetworkError?) -> Void)
 }

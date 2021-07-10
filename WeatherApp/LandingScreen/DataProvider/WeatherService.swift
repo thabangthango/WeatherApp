@@ -12,9 +12,10 @@ class WeatherService: WeatherDataProvider {
         return WebClient(requestManager: requestManager, configuration: configuration)
     }()
     
-    func getCurrentWeather(forCity city: String, completion: @escaping(Weather?, NetworkError?) -> Void) {
+    func getCurrentWeather(withLat lat: String, lon: String, completion: @escaping(Weather?, NetworkError?) -> Void) {
         let path = "/weather"
-        let params = [URLQueryItem(name: "q", value: city),
+        let params = [URLQueryItem(name: "lat", value: lat),
+                      URLQueryItem(name: "lon", value: lon),
                       URLQueryItem(name: "appid", value: apiKey),
                       URLQueryItem(name: "units", value: unitType)]
         
@@ -31,9 +32,10 @@ class WeatherService: WeatherDataProvider {
         }
     }
     
-    func getDailyWeatherForecast(forCity city: String, completion: @escaping(WeatherForcast?, NetworkError?) -> Void) {
+    func getDailyWeatherForecast(withLat lat: String, lon: String, completion: @escaping(WeatherForcast?, NetworkError?) -> Void) {
         let path = "/forecast"
-        let params = [URLQueryItem(name: "q", value: city),
+        let params = [URLQueryItem(name: "lat", value: lat),
+                      URLQueryItem(name: "lon", value: lon),
                       URLQueryItem(name: "appid", value: apiKey),
                       URLQueryItem(name: "units", value: unitType)]
         
