@@ -25,13 +25,18 @@ extension NetworkError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .serverError:
-            return "Server error"
+            return .serverErrorMessage
         case .clientError:
-            return "Client error"
+            return .clientErrorMessage
         case .none:
-            return "No error"
+            return ""
         }
     }
+}
+
+fileprivate extension String {
+    static let serverErrorMessage = NSLocalizedString("SERVER_SIDE_ERROR_MESSAGE", comment: "")
+    static let clientErrorMessage = NSLocalizedString("CLIENT_SIDE_ERROR_MESSAGE", comment: "")
 }
 
 fileprivate extension HTTPURLResponse {

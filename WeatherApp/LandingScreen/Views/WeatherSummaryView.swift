@@ -67,7 +67,7 @@ class WeatherSummaryView: UIView {
         boldCurrentClimateLabel.text = currentClimate
     }
     
-    func configure(climateDescription: String) {
+    func configure(climateDescription: String?) {
         climateDescriptionLabel.text = climateDescription
     }
     

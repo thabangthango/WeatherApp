@@ -1,0 +1,28 @@
+/* 
+  Localizable.strings
+  WeatherApp
+*/
+
+"LOCATION_DENIED_TITLE" = "Location Denied";
+
+"LOCATION_DENIED_MESSAGE" = "Please update your location permission in the settings App.";
+
+"SERVER_SIDE_ERROR_MESSAGE" = "Server error";
+
+"CLIENT_SIDE_ERROR_MESSAGE" = "Client error";
+
+"CANCEL_TEXT" = "Cancel";
+
+"PLEASE_TRY_AGAIN_TITLE" = "Try again";
+
+"ERROR_ALERT_MESSAGE" = "Something went wrong, please try again.";
+
+"ERROR_ALERT_TITLE" = "Oops";
+
+"OK_TEXT" = "OK";
+
+"CLOUDY_TEXT" = "Cloudy";
+
+"SUNNY_TEXT" = "Sunny";
+
+"RAINY_TEXT" = "Rainy";

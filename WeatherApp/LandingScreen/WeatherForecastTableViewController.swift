@@ -28,7 +28,7 @@ class WeatherForecastTableViewController: UITableViewController {
         headerView.configure(maxClimate: currentWeather?.maxTemp)
         headerView.configure(currentClimate: currentWeather?.temp)
         headerView.configure(backgroundImage: currentWeather?.type?.backgroundImage)
-        headerView.configure(climateDescription: currentWeather?.type?.rawValue ?? "")
+        headerView.configure(climateDescription: currentWeather?.type?.summary)
     }
     
     private func configureTableHeaderView(with headerView: WeatherSummaryView) {
@@ -51,7 +51,7 @@ class WeatherForecastTableViewController: UITableViewController {
         guard isLocationGranted(for: status), let coordinate = locationManager.location?.coordinate else {
             locationManager.requestWhenInUseAuthorization()
             if status == .denied {
-                showOkAlert(title: "Location Denied", message: "Please update your location permission in the settings App")
+                showOkAlert(title: .locationDeniedTitle, message: .locationDeniedMessage)
             }
             return
         }
@@ -110,4 +110,10 @@ extension WeatherForecastTableViewController: CLLocationManagerDelegate {
     private func isLocationGranted(for status: CLAuthorizationStatus) -> Bool {
         return status == CLAuthorizationStatus.authorizedWhenInUse || status == CLAuthorizationStatus.authorizedAlways
     }
+}
+
+// MARK: - Strings
+fileprivate extension String {
+    static let locationDeniedTitle = NSLocalizedString("LOCATION_DENIED_TITLE", comment: "")
+    static let locationDeniedMessage = NSLocalizedString("LOCATION_DENIED_MESSAGE", comment: "")
 }

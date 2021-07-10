@@ -5,6 +5,14 @@ enum WeatherType: String {
     case sunny = "Sunny"
     case rainy = "Rainy"
     
+    var summary: String {
+        switch self {
+        case .cloudy: return .cloudyTitle
+        case .rainy: return .rainyTitle
+        case .sunny: return .sunnyTitle
+        }
+    }
+    
     var backgroundImage: UIImage? {
         switch self {
         case .cloudy: return .cloudyBackground
@@ -43,4 +51,10 @@ fileprivate extension UIImage {
     static let sunnyIcon = UIImage(named: "sunny_icon", in: Bundle.main, compatibleWith: nil)
     static let rainyIcon = UIImage(named: "rainy_icon", in: Bundle.main, compatibleWith: nil)
     static let cloudyIcon = UIImage(named: "cloudy_icon", in: Bundle.main, compatibleWith: nil)
+}
+
+fileprivate extension String {
+    static let cloudyTitle = NSLocalizedString("CLOUDY_TEXT", comment: "")
+    static let sunnyTitle = NSLocalizedString("SUNNY_TEXT", comment: "")
+    static let rainyTitle = NSLocalizedString("RAINY_TEXT", comment: "")
 }
