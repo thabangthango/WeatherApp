@@ -83,7 +83,7 @@ extension Weather {
 
 // MARK: - Date formatter
 fileprivate extension NSDate {
-
+    
     static var dayFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE"

@@ -1,7 +1,7 @@
 import Foundation
 
-extension Array {
-    public func element(at index: Int) -> Element? {
+public extension Array {
+    func element(at index: Int) -> Element? {
         guard indices.contains(index) else {
             return nil
         }

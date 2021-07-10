@@ -1,6 +1,7 @@
 import Foundation
 
 fileprivate let apiKey = "337dbed743638aedfbd1573a379191ac"
+fileprivate let unitType = "metric"
 
 class WeatherService: WeatherDataProvider {
     private let baseUrlString = "https://api.openweathermap.org/data/2.5"
@@ -15,7 +16,7 @@ class WeatherService: WeatherDataProvider {
         let path = "/weather"
         let params = [URLQueryItem(name: "q", value: city),
                       URLQueryItem(name: "appid", value: apiKey),
-                      URLQueryItem(name: "units", value: "metric")]
+                      URLQueryItem(name: "units", value: unitType)]
         
         webClient.performRequest(
             model: Weather.self,
@@ -34,8 +35,7 @@ class WeatherService: WeatherDataProvider {
         let path = "/forecast"
         let params = [URLQueryItem(name: "q", value: city),
                       URLQueryItem(name: "appid", value: apiKey),
-                      URLQueryItem(name: "cnt", value: "5"),
-                      URLQueryItem(name: "units", value: "metric")]
+                      URLQueryItem(name: "units", value: unitType)]
         
         webClient.performRequest(
             model: WeatherForcast.self,
