@@ -21,7 +21,7 @@ class WebClient: URLSessionClient {
                 httpMethod: httpMethod,
                 queryParams: params) else { return }
         
-        let task = session.dataTask(with: request) { [weak self] (data, response, error) in
+        let task = session.dataTask(with: request) { (data, response, error) in
             guard error == nil else {
                 DispatchQueue.main.async {
                     completion(.failure(NetworkError(error, response) ?? .none))
@@ -29,7 +29,7 @@ class WebClient: URLSessionClient {
                 return
             }
             DispatchQueue.main.async {
-                self?.parseResponse(with: model, data: data, response: response, completion: completion)
+                self.parseResponse(with: model, data: data, response: response, completion: completion)
             }
         }
         
