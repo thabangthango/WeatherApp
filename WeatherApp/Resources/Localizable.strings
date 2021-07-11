@@ -11,6 +11,8 @@
 
 "CLIENT_SIDE_ERROR_MESSAGE" = "Client error";
 
+"CONNECTION_ERROR_MESSAGE" = "Connection error";
+
 "CANCEL_TEXT" = "Cancel";
 
 "PLEASE_TRY_AGAIN_TITLE" = "Try again";

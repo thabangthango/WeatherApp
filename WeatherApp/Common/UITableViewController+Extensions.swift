@@ -32,7 +32,7 @@ public extension UITableViewController {
 
     func showErrorAlert(retry: @escaping () -> Void) {
         let controller = UIAlertController(title: .errorAlertTitle, message: .errorAlertMessage, preferredStyle: .alert)
-        controller.addAction(UIAlertAction(title: .tryAgainTitle, style: .default, handler: nil))
+        controller.addAction(UIAlertAction(title: .tryAgainTitle, style: .default, handler: { _ in retry() }))
         controller.addAction(UIAlertAction(title: .cancelTitle, style: .default, handler: nil))
         present(controller, animated: true, completion: nil)
     }
