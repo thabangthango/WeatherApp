@@ -4,7 +4,7 @@ class WeatherAppUITests: XCTestCase {
 
     func testExample() throws {
         let app = XCUIApplication()
-        app.launch().
+        app.launch()
     }
 
     func testLaunchPerformance() throws {

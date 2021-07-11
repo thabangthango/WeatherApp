@@ -12,10 +12,20 @@ class WeatherForecastTableViewCell: UITableViewCell {
 
     private func configureStyling() {
         self.backgroundColor = .clear
+        configureTitleLabelStyling()
+        configureClimateLabelStyling()
+    }
+
+    private func configureClimateLabelStyling() {
         climateLabel.textColor = UIColor.white
         climateLabel.numberOfLines = 1
+        climateLabel.font = .systemFont(ofSize: 15)
+    }
+
+    private func configureTitleLabelStyling() {
         titleLabel.textColor = UIColor.white
         titleLabel.numberOfLines = 1
+        titleLabel.font = .systemFont(ofSize: 15)
     }
 
     func configure(title: String?) {

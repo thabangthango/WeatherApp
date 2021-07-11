@@ -46,7 +46,7 @@ class WeatherForcastViewModelTests: XCTestCase {
     func testViewModelReturnsCorrentCurrentWeatherDetails() {
         let actualCurrentWeather = systemUnderTest.currentWeather
 
-        XCTAssertEqual("Monday", actualCurrentWeather?.day)
+        XCTAssertEqual("Monday, 05 PM", actualCurrentWeather?.day)
         XCTAssertEqual(.cloudy, actualCurrentWeather?.type)
         XCTAssertEqual("25°", actualCurrentWeather?.temp)
         XCTAssertEqual("30°", actualCurrentWeather?.minTemp)

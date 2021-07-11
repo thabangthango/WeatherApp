@@ -46,6 +46,7 @@
                     <constraint firstItem="Wsn-5p-tv5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Uyx-Gn-ltg"/>
                     <constraint firstItem="Wsn-5p-tv5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="f4t-RW-dFe"/>
                     <constraint firstItem="aLt-ta-s3Z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="lVb-Cg-m9i"/>
+                    <constraint firstItem="aLt-ta-s3Z" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Wsn-5p-tv5" secondAttribute="trailing" constant="5" id="qg1-j2-Uno"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

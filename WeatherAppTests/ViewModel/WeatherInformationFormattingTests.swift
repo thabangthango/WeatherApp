@@ -21,9 +21,9 @@ class WeatherInformationFormattingTests: XCTestCase {
     }
 
     func testWeatherReturnsExpectedDay() {
-        XCTAssertEqual("Monday", cloudyWeatherUnderTest.day)
-        XCTAssertEqual("Tuesday", sunnyWeatherUnderTest.day)
-        XCTAssertEqual("Saturday", rainyWeatherUnderTest.day)
+        XCTAssertEqual("Monday, 05 PM", cloudyWeatherUnderTest.day)
+        XCTAssertEqual("Tuesday, 02 AM", sunnyWeatherUnderTest.day)
+        XCTAssertEqual("Saturday, 05 PM", rainyWeatherUnderTest.day)
     }
 
     func testWeatherReturnsExpectedWeatherType() {

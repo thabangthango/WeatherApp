@@ -90,7 +90,7 @@ fileprivate extension NSDate {
 
     static var dayFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE"
+        dateFormatter.dateFormat = "EEEE, hh a"
         dateFormatter.calendar = Calendar.current
         return dateFormatter
     }
