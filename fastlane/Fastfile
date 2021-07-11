@@ -8,8 +8,7 @@ platform :ios do
   		scheme: "WeatherAppTests",
   		clean: true,
   		devices: ['iPhone 11'],
-  		skip_build: false,
-        build_for_testing: true)
+  		skip_build: false)
   end
 
   desc 'Lint project files'
