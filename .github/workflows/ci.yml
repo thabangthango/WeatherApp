@@ -15,7 +15,7 @@ jobs:
       - name: Force xcode 11 
         run: sudo xcode-select -switch /Applications/Xcode_11.7.app
       - name: Link to 13.7 Simulators
-      run: |
+        run:
         echo "Creating Runtimes folder if needed..."
         sudo mkdir -p /Library/Developer/CoreSimulator/Profiles/Runtimes
         echo "Creating symlink of the iOS 13.7 runtime..."
