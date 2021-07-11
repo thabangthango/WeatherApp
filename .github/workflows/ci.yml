@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Force xcode 11 
-        run: sudo xcode-select -switch /Applications/Xcode_11.1.app
+        run: sudo xcode-select -switch /Applications/Xcode_11.3.app
       - name: iOS build setup
         run: xcodebuild build-for-testing -scheme WeatherAppTests -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.1'
       - name: Test iPhone 11
