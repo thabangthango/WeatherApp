@@ -25,7 +25,12 @@ Description of what the lane does
 ```
 fastlane ios tests
 ```
-Run_unit_tests
+Run unit tests
+### ios lint
+```
+fastlane ios lint
+```
+
 
 ----
 
