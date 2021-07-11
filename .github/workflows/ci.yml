@@ -21,7 +21,7 @@ jobs:
          echo "Creating symlink of the iOS 13.7 runtime..."
          sudo ln -s /Applications/Xcode_11.7.app/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime /Library/Developer/CoreSimulator/Profiles/Runtimes/iOS\ 13.7.simruntim
       - name: Test iPhone 11
-        run: xcodebuild test -scheme your-scheme-test -workspace your_project.xcworkspace -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.7'
+        run: xcodebuild test -scheme WeatherApp -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.7'
   swiftLint:
     runs-on: macos-latest
     steps:
