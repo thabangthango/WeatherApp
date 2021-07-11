@@ -13,11 +13,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Force xcode 11 
-        run: sudo xcode-select -switch /Applications/Xcode_11.3.app
-      - name: iOS build setup
-        run: xcodebuild build-for-testing -scheme WeatherAppTests -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.1'
+        run: sudo xcode-select -switch /Applications/Xcode_11.7.app
+        echo "Creating Runtimes folder if needed..."
+        sudo mkdir -p /Library/Developer/CoreSimulator/Profiles/Runtimes
+        echo "Creating symlink of the iOS 13.7 runtime..."
+        sudo ln -s /Applications/Xcode_11.7.app/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime /Library/Developer/CoreSimulator/Profiles/Runtimes/iOS\ 13.7.simruntim
       - name: Test iPhone 11
-        run: xcodebuild test-without-building -scheme your-scheme-test -workspace your_project.xcworkspace -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.1'
+        run: xcodebuild test -scheme your-scheme-test -workspace your_project.xcworkspace -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.7'
   swiftLint:
     runs-on: macos-latest
     steps:
